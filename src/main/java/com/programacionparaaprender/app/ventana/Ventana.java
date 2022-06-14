@@ -5,6 +5,7 @@ import java.awt.Font;
 import javax.swing.*;
 
 import com.programacionparaaprender.app.pruebas.Multihilo;
+import com.programacionparaaprender.app.pruebas.Repetidor;
 
 public class Ventana extends JFrame{
 	java.util.LinkedList<Thread> hilos;
@@ -14,7 +15,13 @@ public class Ventana extends JFrame{
 	JTextField txtSleep;
 	JButton btnIniciar;
 	JButton btnDetener;
+	Repetidor repetidor = null;
+	Thread hilo;
 	public Ventana() {
+		this.initComponents();
+	}
+	
+	private void initComponents() {
 		setTitle("Testeo Web");
 		hilos= new java.util.LinkedList<Thread>();
 		this.setVisible(true);
@@ -93,22 +100,30 @@ public class Ventana extends JFrame{
         
 	}
 	public void detener() {
-		for(Thread h: hilos) {
-			h.stop();
-		
+		if(repetidor == null) {
+			repetidor = new Repetidor(0, 0);
+			repetidor.setValor(false);
+			hilo.stop();
+			hilo = new Thread(repetidor);	
+		}else {
+			repetidor.setValor(false);
+    		hilo.stop();
+    		hilo = new Thread(repetidor);
+    		repetidor.setValor(true);
 		}
-		hilos.clear();
 	}
 	public void iniciar(int cantidadHilo, int sleep) {
-		for(Thread h: hilos) {
-			h.stop();
-		}
-		hilos.clear();
-		for(int i = 0; i < cantidadHilo; i++) {
-			Multihilo mul = new Multihilo(i + 1, sleep);
-			Thread h=new Thread(mul);
-			hilos.add(h);
-			h.start();
-		}
+		if(repetidor == null) {
+    		repetidor = new Repetidor(cantidadHilo, sleep);
+    		hilo = new Thread(repetidor);
+    		hilo.start();
+    	}
+		else {
+    		repetidor.setValor(false);
+    		hilo.stop();
+    		hilo = new Thread(repetidor);
+    		repetidor.setValor(true);
+    		hilo.start();
+    	}
 	}
 }

@@ -23,8 +23,9 @@ public class PruebasSeleniumApplication {
 	public static void main(String[] args) {
 		
 		try {
+			//[Metal, Nimbus, CDE/Motif, Windows, Windows Classic]
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus"/*"CDE/Motif"*/ .equals(info.getName())) {//"Nimbus".equals(info.getName())) {
+                if ("CDE/Motif"/*"CDE/Motif"*/ .equals(info.getName())) {//"Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -42,7 +43,13 @@ public class PruebasSeleniumApplication {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-            
+            	/*
+            	java.util.LinkedList<String> estilos = new java.util.LinkedList<String>();
+            	for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+            		estilos.add(info.getName());  
+            		System.out.println(info.getName());
+            	}
+            	*/
             	Ventana ventana = new Ventana();
             	
                 //MVentana mve=new MVentana(25,16);

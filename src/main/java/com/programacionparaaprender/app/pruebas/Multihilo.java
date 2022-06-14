@@ -23,7 +23,7 @@ public class Multihilo implements Runnable {
 	private int sleep;
 	public void run() {
 		try{
-		while(true) {
+		if(true) {
 			
 				DateFormat dateFormat = new SimpleDateFormat("YYYY/MM/dd HH:mm:ss");
 				Date primeraHora = new Date();
@@ -32,8 +32,7 @@ public class Multihilo implements Runnable {
 
 				WebDriver driver=(WebDriver)new ChromeDriver();
 
-				//driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-
+				
 				driver.manage().window().maximize();
 
 				driver.get("https://www.python.org/");
@@ -42,11 +41,11 @@ public class Multihilo implements Runnable {
 				
 				WebElement link1 = driver.findElement(By.linkText("Windows"));
 	            link1.sendKeys(Keys.ENTER);
-	            Thread.sleep(2000);
+	            
 
-	            WebElement link2 = driver.findElement(By.linkText("Latest Python 3 Release - Python 3.10.5"));
-	            link2.sendKeys(Keys.ENTER);
-	            Thread.sleep(2000);
+	            //WebElement link2 = driver.findElement(By.linkText("Latest Python 3 Release - Python 3.10.5"));
+	            //link2.sendKeys(Keys.ENTER);
+	           
 	          
 	            
 				Date segundaHora = new Date();
@@ -54,15 +53,16 @@ public class Multihilo implements Runnable {
 				
 				System.out.println("Id: " + String.valueOf(id) + " Segunda Hora: " + dateFormat.format(segundaHora));
 				
-				driver.quit();
+				// driver.quit();
 				// close only the child browser window
+				
 				driver.close();
 				
-              Thread.sleep(sleep); 
+				//Thread.sleep(sleep); 
          
 		}
 		 }catch(Exception e){
-       	  System.out.println(e.getMessage());
+       	javax.swing.JOptionPane.showMessageDialog(null, e.getMessage());
          }
 	}
 
