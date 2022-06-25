@@ -11,8 +11,8 @@ import org.openqa.selenium.support.FindBy;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.programacionparaaprender.app.pruebas.Multihilo;
-import com.programacionparaaprender.app.ventana.Ventana;
+import com.programacionparaaprender.app.pruebas.PaginaPython;
+import com.programacionparaaprender.app.vista.Ventana;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
